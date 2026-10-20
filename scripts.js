@@ -6,20 +6,24 @@ const campos = ["cep", "logradouro", "bairro", "cidade", "estado", "numero", "co
 
 document.getElementById("cep").addEventListener("blur", (evento) => {
     const cep = evento.target.value
-    if(cep.length !== 8) return;
-    
+    if (cep.length !== 8) return;
+
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
-    .then(r => r.json())
-    .then(resultado => {
-        if(resultado.erro) {
-            alert("CEP não encontrado")
-            return;
-        }
-        document.getElementById("logradouro").value = resultado.logradouro
-        document.getElementById("bairro").value = resultado.bairro
-        document.getElementById("cidade").value = resultado.localidade
-        document.getElementById("estado").value = resultado.estado
-    })
+        .then(resposta => resposta.json())
+        .then(resultado => {
+            if (resultado.erro) {
+                alert("CEP não encontrado.")
+                return;
+            }
+            document.getElementById("logradouro").value = resultado.logradouro
+            document.getElementById("bairro").value = resultado.bairro
+            document.getElementById("cidade").value = resultado.localidade
+            document.getElementById("estado").value = resultado.estado
+        })
+        .catch(erro => {
+            console.error(erro);
+            alert("Erro ao buscar CEP.");
+        });
 })
 
 formulario.addEventListener("input", () => {
@@ -39,9 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 formulario.addEventListener("submit", (evento) => {
     evento.preventDefault();
-    
+
     mensagem.textContent = "Endereço Cadastrado";
-    
+
     travarCampos(true);
     btnCadastrar.disabled = true;
     btnNovo.disabled = false;
@@ -51,7 +55,7 @@ btnNovo.addEventListener("click", () => {
     formulario.reset();
     mensagem.textContent = "";
     localStorage.removeItem("endereco");
-    
+
     travarCampos(false);
     btnCadastrar.disabled = false;
     btnNovo.disabled = true;
