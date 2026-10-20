@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Endereço</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Cadastrar Endereço</h1>
+    </header>
+    <main>
+        <form id="formulario">
+            <h2>Preencha todos os campos</h2>
+
+            <label for="cep">CEP(apenas números):</label>
+            <input type="text" id="cep" maxlength="8">
+
+            <label for="logradouro">Logradouro:</label>
+            <input type="text" id="logradouro" required>
+
+            <label for="bairro">Bairro:</label>
+            <input type="text" id="bairro" required>
+
+            <label for="cidade">Cidade:</label>
+            <input type="text" id="cidade" required>
+
+            <label for="estado">Estado:</label>
+            <input type="text" id="estado" required>
+
+            <section class="linha-dupla">
+                <div class="campo-metade">
+                    <label for="numero">Número:</label>
+                    <input type="number" id="numero" required>
+                </div>
+                <div class="campo-metade">
+                    <label for="complemento">Complemento:</label>
+                    <input type="text" id="complemento">
+                </div>
+            </section>
+            <section>
+                <button type="submit" id="btn-cadastrar">Cadastrar Endereço</button>
+                <button type="button" id="btn-novo" disabled>Novo Endereço</button>
+            </section>
+        </form>
+        <p id="mensagem"></p>
+    </main>
+</body>
+</html>
